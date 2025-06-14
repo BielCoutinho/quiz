@@ -149,25 +149,27 @@ const drops = new Array(columns).fill(1);
 ctx.font = `${fontSize}px monospace`;
 ctx.fillStyle = '#00c8ff'; // Verde clássico Matrix
 
-function draw() {
+let lastTime = 0;
+const speed = 50; // quanto maior, mais lento (em ms)
+
+function draw(time = 0) {
+  if (time - lastTime < speed) {
+    requestAnimationFrame(draw);
+    return;
+  }
+  lastTime = time;
+
   // Fundo semi-transparente para efeito de "rastro"
   ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   ctx.fillStyle = '#00c8ff';
 
-  // Desenha cada coluna
   for (let i = 0; i < drops.length; i++) {
-    // Escolhe aleatoriamente 0 ou 1
     const text = chars[Math.floor(Math.random() * chars.length)];
-
-    // Desenha o caractere na posição (x,y)
     ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-    // Avança a posição da "gota" na coluna
     drops[i]++;
 
-    // Reinicia a gota em Y = 0 aleatoriamente para efeito contínuo
     if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
       drops[i] = 0;
     }
@@ -177,3 +179,4 @@ function draw() {
 }
 
 draw();
+
