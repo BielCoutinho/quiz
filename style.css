@@ -275,6 +275,19 @@ button {
   .ranking-entry:nth-child(even) {
     background: #001a33cc;
   }
+
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    background: black;
+  }
+  
+  
   
   /* Animações */
   

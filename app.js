@@ -122,4 +122,58 @@ function showRankingTab(quiz) {
   
   // Inicializa mostrando ranking do quiz1
   showRankingTab('quiz1');
-  
+
+  const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+// Caracteres que vão cair — só 0 e 1 para binário
+const chars = ['0', '1'];
+
+// Tamanho da fonte dos caracteres
+const fontSize = 16;
+
+// Número de colunas baseado na largura da tela
+const columns = Math.floor(canvas.width / fontSize);
+
+// Array que guarda a posição Y atual de cada coluna (em número de linhas)
+const drops = new Array(columns).fill(1);
+
+// Cor e estilo da fonte
+ctx.font = `${fontSize}px monospace`;
+ctx.fillStyle = '#00c8ff'; // Verde clássico Matrix
+
+function draw() {
+  // Fundo semi-transparente para efeito de "rastro"
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = '#00c8ff';
+
+  // Desenha cada coluna
+  for (let i = 0; i < drops.length; i++) {
+    // Escolhe aleatoriamente 0 ou 1
+    const text = chars[Math.floor(Math.random() * chars.length)];
+
+    // Desenha o caractere na posição (x,y)
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+    // Avança a posição da "gota" na coluna
+    drops[i]++;
+
+    // Reinicia a gota em Y = 0 aleatoriamente para efeito contínuo
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+      drops[i] = 0;
+    }
+  }
+
+  requestAnimationFrame(draw);
+}
+
+draw();

@@ -9,10 +9,10 @@
   <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
 </head>
 <body>
-  <h1>Quiz PWA</h1>
+  <h1>Quiz</h1>
 
   <div id="start-screen">
-    <label>Digite seu nome: <input type="text" id="nomeInput" /></label>
+    <label>Digite nome: <input type="text" id="nomeInput" /></label>
     <button onclick="startQuiz('quiz1')">Começar Quiz 1</button>
     <button onclick="startQuiz('quiz2')">Começar Quiz 2</button>
   </div>
@@ -28,6 +28,8 @@
     <div id="ranking-quiz1" class="ranking-tab"></div>
     <div id="ranking-quiz2" class="ranking-tab" style="display:none"></div>
   </div>
+
+  <canvas id="canvas"></canvas>
 
   <script src="app.js"></script>
 </body>
