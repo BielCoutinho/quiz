@@ -12,24 +12,16 @@
   <h1>Quiz</h1>
 
   <div id="start-screen">
-    <label>Digite nome: <input type="text" id="nomeInput" /></label>
     <button onclick="startQuiz('quiz1')">Começar Quiz 1</button>
     <button onclick="startQuiz('quiz2')">Começar Quiz 2</button>
   </div>
 
   <div id="quiz-container"></div>
-
-  <div id="ranking">
-    <h2>Ranking</h2>
-    <div class="tabs">
-      <div class="tab-button active" onclick="showRankingTab('quiz1')" id="tab-quiz1">Quiz 1</div>
-      <div class="tab-button" onclick="showRankingTab('quiz2')" id="tab-quiz2">Quiz 2</div>
-    </div>
-    <div id="ranking-quiz1" class="ranking-tab"></div>
-    <div id="ranking-quiz2" class="ranking-tab" style="display:none"></div>
-  </div>
-
   <canvas id="canvas"></canvas>
+
+  <audio id="acerto" src="sounds/correct.mp3" preload="auto"></audio>
+<audio id="erro" src="sounds/wrong.mp3" preload="auto"></audio>
+
 
   <script src="app.js"></script>
 </body>
